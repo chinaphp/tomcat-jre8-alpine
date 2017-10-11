@@ -7,7 +7,7 @@ RUN apk add --no-cache bash ttf-dejavu tzdata && \
   echo "Asia/Shanghai" > /etc/timezone  && \
   rm -rf /usr/share/man /tmp/* /var/cache/apk/*
   
-ENV  TIME_ZONE Asia/Shanghai
+ENV TIME_ZONE Asia/Shanghai
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
