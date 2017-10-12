@@ -1,13 +1,7 @@
 FROM openjdk:8-jre-alpine
 
-
-RUN apk add --no-cache bash ttf-dejavu tzdata && \
-  # add timezone
-  ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-  echo "Asia/Shanghai" > /etc/timezone  && \
-  rm -rf /usr/share/man /tmp/* /var/cache/apk/*
   
-ENV TIME_ZONE Asia/Shanghai
+ENV TZ 'Asia/Shanghai'
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
@@ -16,6 +10,12 @@ WORKDIR $CATALINA_HOME
 # let "Tomcat Native" live somewhere isolated
 ENV TOMCAT_NATIVE_LIBDIR $CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
+
+RUN apk add --no-cache bash ttf-dejavu tzdata && \
+  # add timezone
+  ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+  echo "Asia/Shanghai" > /etc/timezone  && \
+  rm -rf /usr/share/man /tmp/* /var/cache/apk/*
 
 RUN apk add --no-cache gnupg
 
