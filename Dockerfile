@@ -1,5 +1,6 @@
 FROM openjdk:8-jre-alpine
 
+LABEL maintainer="chinaphp <chinaphp.com@gmail.com>"
   
 ENV TZ 'Asia/Shanghai'
 ENV CATALINA_HOME /usr/local/tomcat
